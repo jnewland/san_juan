@@ -7,7 +7,6 @@ module SanJuan
 
   def role(role, watches)
     @@roles << role
-    puts "defining cap tasks for god role #{role}"
 
     namespace :god do
 
