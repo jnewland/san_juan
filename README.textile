@@ -26,11 +26,11 @@ In your Capistrano deploy recipie:
 <code>
 require 'san_juan'
 
-role :foo, 'foo.example.com'
-role :bar, 'bar.example.com'
+role :app, 'foo.example.com'
+role :web, 'bar.example.com'
 
-san_juan.role :foo, %w(mongrels memcached)
-san_juan.role :bar, %w(nginx)
+san_juan.role :app, %w(mongrels memcached)
+san_juan.role :web, %w(nginx)
 </code>
 </pre>
 
@@ -45,36 +45,64 @@ Now, check out @cap -T@:
   cap god:all:start_interactive   # Start god interactively
   cap god:all:status              # Describe the status of the running tasks on...
   cap god:all:terminate           # Terminate god and all monitored processes
-  cap god:bar:nginx:log           # Log nginx
-  cap god:bar:nginx:remove        # Remove nginx
-  cap god:bar:nginx:restart       # Restart nginx
-  cap god:bar:nginx:start         # Start nginx
-  cap god:bar:nginx:stop          # Stop nginx
-  cap god:bar:nginx:unmonitor     # Unmonitor nginx
-  cap god:bar:quit                # Quit god, but not the processes it's monito...
-  cap god:bar:reload              # Reload the god config file
-  cap god:bar:start               # Start god
-  cap god:bar:start_interactive   # Start god interactively
-  cap god:bar:terminate           # Terminate god and all monitored processes
-  cap god:foo:memcached:log       # Log memcached
-  cap god:foo:memcached:remove    # Remove memcached
-  cap god:foo:memcached:restart   # Restart memcached
-  cap god:foo:memcached:start     # Start memcached
-  cap god:foo:memcached:stop      # Stop memcached
-  cap god:foo:memcached:unmonitor # Unmonitor memcached
-  cap god:foo:mongrels:log        # Log mongrels
-  cap god:foo:mongrels:remove     # Remove mongrels
-  cap god:foo:mongrels:restart    # Restart mongrels
-  cap god:foo:mongrels:start      # Start mongrels
-  cap god:foo:mongrels:stop       # Stop mongrels
-  cap god:foo:mongrels:unmonitor  # Unmonitor mongrels
-  cap god:foo:quit                # Quit god, but not the processes it's monito...
-  cap god:foo:reload              # Reload the god config file
-  cap god:foo:start               # Start god
-  cap god:foo:start_interactive   # Start god interactively
-  cap god:foo:terminate           # Terminate god and all monitored processes
+  cap god:app:memcached:log       # Log memcached
+  cap god:app:memcached:remove    # Remove memcached
+  cap god:app:memcached:restart   # Restart memcached
+  cap god:app:memcached:start     # Start memcached
+  cap god:app:memcached:stop      # Stop memcached
+  cap god:app:memcached:unmonitor # Unmonitor memcached
+  cap god:app:mongrels:log        # Log mongrels
+  cap god:app:mongrels:remove     # Remove mongrels
+  cap god:app:mongrels:restart    # Restart mongrels
+  cap god:app:mongrels:start      # Start mongrels
+  cap god:app:mongrels:stop       # Stop mongrels
+  cap god:app:mongrels:unmonitor  # Unmonitor mongrels
+  cap god:app:quit                # Quit god, but not the processes it's monito...
+  cap god:app:reload              # Reload the god config file
+  cap god:app:start               # Start god
+  cap god:app:start_interactive   # Start god interactively
+  cap god:app:terminate           # Terminate god and all monitored processes
+  cap god:web:nginx:log           # Log nginx
+  cap god:web:nginx:remove        # Remove nginx
+  cap god:web:nginx:restart       # Restart nginx
+  cap god:web:nginx:start         # Start nginx
+  cap god:web:nginx:stop          # Stop nginx
+  cap god:web:nginx:unmonitor     # Unmonitor nginx
+  cap god:web:quit                # Quit god, but not the processes it's monito...
+  cap god:web:reload              # Reload the god config file
+  cap god:web:start               # Start god
+  cap god:web:start_interactive   # Start god interactively
+  cap god:web:terminate           # Terminate god and all monitored processes
   ...
 </pre>
+</code>
+
+To make capistrano start, stop, and restart your app using God, override the
+@deploy:start@, @deploy:stop@, and @deploy:restart@ tasks:
+
+<pre>
+<code>
+namespace :deploy do
+  desc "Use god to restart the app"
+  task :restart do
+    god.all.reload #ensures any changes to the god config are applied at deploy
+    god.app.mongrels.restart
+    # god.web.nginx.restart
+    # ...
+  end
+
+  desc "Use god to start the app"
+  task :start do
+    god.all.start
+  end
+
+  desc "Use god to stop the app"
+  task :stop do
+    god.all.terminate
+  end
+end
+</pre>
+</code>
 
 h2. Tweaks
 
@@ -89,13 +117,14 @@ This can be changed by setting the @god_config_path@ capistrano variable:
 <code>
 require 'san_juan'
 
-role :foo, 'foo.example.com'
-role :bar, 'bar.example.com'
-
 set :god_config_path, "/path/to/config"
 
-san_juan.role :foo, %w(mongrels memcached)
-san_juan.role :bar, %w(nginx)
+role :app, 'foo.example.com'
+role :web, 'bar.example.com'
+
+san_juan.role :app, %w(mongrels memcached)
+san_juan.role :web, %w(nginx)
+
 </code>
 </pre>
 
