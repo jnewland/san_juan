@@ -11,7 +11,39 @@ module SanJuan
 
     namespace :god do
 
-      san_juan.define_meta_tasks unless @meta_tasks_defined
+      unless @meta_tasks_defined
+        namespace :all do
+          desc "Describe the status of the running tasks on each server"
+          task :status, :roles => san_juan.roles do
+            san_juan.roles.each { |role| send(role, :status) }
+          end
+
+          desc "Start god"
+          task :start do
+            san_juan.roles.each { |role| send(role, :start) }
+          end
+
+          desc "Reloading God Config"
+          task :reload do
+            san_juan.roles.each { |role| send(role, :reload) }
+          end
+
+          desc "Start god interactively"
+          task :start_interactive do
+            san_juan.roles.each { |role| send(role, :start_interactive) }
+          end
+
+          desc "Quit god, but not the processes it's monitoring"
+          task :quit do
+            san_juan.roles.each { |role| send(role, :quit) }
+          end
+
+          desc "Terminate god and all monitored processes"
+          task :terminate do
+            san_juan.roles.each { |role| send(role, :terminate) }
+          end
+        end
+      end
       @meta_tasks_defined = true
 
       namespace role do
@@ -54,41 +86,6 @@ module SanJuan
       end # end role namespace
 
     end #end god namespace
-  end
-
-  def define_meta_tasks
-    puts "defining meta cap tasks for god"
-    namespace :all do
-      desc "Describe the status of the running tasks on each server"
-      task :status, :roles => san_juan.roles do
-        san_juan.roles.each { |role| send(role, :status) }
-      end
-
-      desc "Start god"
-      task :start do
-        san_juan.roles.each { |role| send(role, :start) }
-      end
-
-      desc "Reloading God Config"
-      task :reload do
-        san_juan.roles.each { |role| send(role, :reload) }
-      end
-
-      desc "Start god interactively"
-      task :start_interactive do
-        san_juan.roles.each { |role| send(role, :start_interactive) }
-      end
-
-      desc "Quit god, but not the processes it's monitoring"
-      task :quit do
-        san_juan.roles.each { |role| send(role, :quit) }
-      end
-
-      desc "Terminate god and all monitored processes"
-      task :terminate do
-        san_juan.roles.each { |role| send(role, :terminate) }
-      end
-    end
   end
 
   def configuration_path(current_path, role)
