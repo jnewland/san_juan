@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
 
   s.files = [
     "lib/san_juan.rb",
-    "Readme.textile"
+    "README.textile"
   ]
   s.require_paths = ["lib"]
 
@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency(%q<capistrano>)
 
   s.has_rdoc = false
-  s.extra_rdoc_files = ["Readme.textile"]
+  s.extra_rdoc_files = ["README.textile"]
 
   s.rubygems_version = %q{1.1.0}
   s.specification_version = 2 if s.respond_to? :specification_version=
