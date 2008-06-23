@@ -58,7 +58,7 @@ module SanJuan
 
         desc "Reload the god config file"
         task :reload, :roles => role do
-          sudo "god load #{configuration_path(current_path, role)}"
+          sudo "god load #{san_juan.configuration_path(current_path, role)}"
         end
 
         desc "Quit god, but not the processes it's monitoring"
