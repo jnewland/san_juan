@@ -3,8 +3,7 @@ Gem::Specification.new do |s|
   s.version = "0.0.3"
   s.authors = ["Jesse Newland"]
   s.date = %q{2008-05-20}
-  s.description = %q{Capistrano Recipies for God}
-  s.summary = %q{Capistrano Recipies for God}
+  s.description = s.summary = %q{Capistrano Recipies for God}
   s.email = %q{jnewland@gmail.com}
   s.homepage = %q{http://github.com/jnewland/san_juan}
   #s.rubyforge_project = %q{san_juan}
