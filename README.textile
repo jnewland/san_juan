@@ -11,10 +11,7 @@ h2. Install
 
 <pre>
 <code>
-git clone git://github.com/jnewland/san_juan.git
-cd san_juan
-gem build san_juan.gemspec
-sudo gem install -l san_juan-*.gem
+gem install jnewland-san_juan
 </code>
 </pre>
 
