@@ -36,40 +36,40 @@ Now, check out @cap -T@:
 <pre>
 <code>
   ...
-  cap god:all:quit                # Quit god, but not the processes it's monito...
-  cap god:all:reload              # Reloading God Config
-  cap god:all:start               # Start god
-  cap god:all:start_interactive   # Start god interactively
-  cap god:all:status              # Describe the status of the running tasks on...
-  cap god:all:terminate           # Terminate god and all monitored processes
-  cap god:app:memcached:log       # Log memcached
-  cap god:app:memcached:remove    # Remove memcached
-  cap god:app:memcached:restart   # Restart memcached
-  cap god:app:memcached:start     # Start memcached
-  cap god:app:memcached:stop      # Stop memcached
-  cap god:app:memcached:unmonitor # Unmonitor memcached
-  cap god:app:mongrels:log        # Log mongrels
-  cap god:app:mongrels:remove     # Remove mongrels
-  cap god:app:mongrels:restart    # Restart mongrels
-  cap god:app:mongrels:start      # Start mongrels
-  cap god:app:mongrels:stop       # Stop mongrels
-  cap god:app:mongrels:unmonitor  # Unmonitor mongrels
-  cap god:app:quit                # Quit god, but not the processes it's monito...
-  cap god:app:reload              # Reload the god config file
-  cap god:app:start               # Start god
-  cap god:app:start_interactive   # Start god interactively
-  cap god:app:terminate           # Terminate god and all monitored processes
-  cap god:web:nginx:log           # Log nginx
-  cap god:web:nginx:remove        # Remove nginx
-  cap god:web:nginx:restart       # Restart nginx
-  cap god:web:nginx:start         # Start nginx
-  cap god:web:nginx:stop          # Stop nginx
-  cap god:web:nginx:unmonitor     # Unmonitor nginx
-  cap god:web:quit                # Quit god, but not the processes it's monito...
-  cap god:web:reload              # Reload the god config file
-  cap god:web:start               # Start god
-  cap god:web:start_interactive   # Start god interactively
-  cap god:web:terminate           # Terminate god and all monitored processes
+  cap god:all:quit                                   # Quit god, but not the proce...
+  cap god:all:reload                                 # Reloading God Config
+  cap god:all:start                                  # Start god
+  cap god:all:start_interactive                      # Start god interactively
+  cap god:all:status                                 # Describe the status of the ...
+  cap god:all:terminate                              # Terminate god and all monit...
+  cap god:app:mongrels:log                           # Log mongrels
+  cap god:app:mongrels:remove                        # Remove mongrels
+  cap god:app:mongrels:restart                       # Restart mongrels
+  cap god:app:mongrels:start                         # Start mongrels
+  cap god:app:mongrels:stop                          # Stop mongrels
+  cap god:app:mongrels:unmonitor                     # Unmonitor mongrels
+  cap god:app:memcached:log                          # Log memcached
+  cap god:app:memcached:remove                       # Remove memcached
+  cap god:app:memcached:restart                      # Restart memcached
+  cap god:app:memcached:start                        # Start memcached
+  cap god:app:memcached:stop                         # Stop memcached
+  cap god:app:memcached:unmonitor                    # Unmonitor memcached
+  cap god:app:quit                                   # Quit god, but not the proce...
+  cap god:app:reload                                 # Reload the god config file
+  cap god:app:start                                  # Start god
+  cap god:app:start_interactive                      # Start god interactively
+  cap god:app:terminate                              # Terminate god and all monit...
+  cap god:web:nginx:log                              # Log nginx
+  cap god:web:nginx:remove                           # Remove nginx
+  cap god:web:nginx:restart                          # Restart nginx
+  cap god:web:nginx:start                            # Start nginx
+  cap god:web:nginx:stop                             # Stop nginx
+  cap god:web:nginx:unmonitor                        # Unmonitor nginx
+  cap god:web:quit                                   # Quit god, but not the proce...
+  cap god:web:reload                                 # Reload the god config file
+  cap god:web:start                                  # Start god
+  cap god:web:start_interactive                      # Start god interactively
+  cap god:web:terminate                              # Terminate god and all monit...
   ...
 </pre>
 </code>
