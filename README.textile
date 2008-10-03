@@ -12,6 +12,8 @@ h2. Install
 <pre>
 <code>
 gem install jnewland-san_juan
+OR
+gem install jnewland-san_juan -s http://gems.github.com
 </code>
 </pre>
 
