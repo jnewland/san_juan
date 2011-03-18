@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = %q{andrey_san_juan}
-  s.version = "0.0.4"
+  s.version = "0.0.5"
   s.authors = ["Jesse Newland"]
   s.date = %q{2008-05-20}
   s.description = s.summary = %q{Capistrano Recipies for God}
