@@ -127,6 +127,17 @@ san_juan.role :web, %w(nginx)
 </code>
 </pre>
 
+If you would like to specify the full path to your god executable you can specify the command with the god_command variable:
+
+<pre>
+<code>
+require 'san_juan'
+
+set :god_command, "/usr/local/bin/god"
+</code>
+</pre>
+
+
 h2. Author
 
 "Jesse Newland":http://jnewland.com/
