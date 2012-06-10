@@ -6,6 +6,7 @@ module SanJuan
   end
 
   def role(role, watches)
+    via = fetch(:run_method, :sudo)
     @@roles << role
 
     namespace :god do
@@ -48,32 +49,32 @@ module SanJuan
       namespace role do
         desc "Start god"
         task :start, :roles => role do
-          sudo "god -c #{san_juan.configuration_path(current_path, role)}"
+          invoke_command "god -c #{san_juan.configuration_path(current_path, role)}", :via => via
         end
 
         desc "Start god interactively"
         task :start_interactive, :roles => role do
-          sudo "god -c #{san_juan.configuration_path(current_path, role)} -D"
+          invoke_command "god -c #{san_juan.configuration_path(current_path, role)} -D", :via => via
         end
 
         desc "Reload the god config file"
         task :reload, :roles => role do
-          sudo "god load #{san_juan.configuration_path(current_path, role)}"
+          invoke_command "god load #{san_juan.configuration_path(current_path, role)}", :via => via
         end
 
         desc "Quit god, but not the processes it's monitoring"
         task :quit, :roles => role do
-          sudo 'god quit'
+          invoke_command 'god quit', :via => via
         end
 
         desc "Terminate god and all monitored processes"
         task :terminate, :roles => role do
-          sudo 'god terminate'
+          invoke_command 'god terminate', :via => via
         end
 
         desc "Describe the status of the running tasks"
         task :status, :roles => role do
-          sudo 'god status'
+          invoke_command 'god status', :via => via
         end
 
         watches.each do |watch|
@@ -81,7 +82,7 @@ module SanJuan
             %w(start restart stop unmonitor remove log).each do |command|
               desc "#{command.capitalize} #{watch}"
               task command, :roles => role do
-                sudo "god #{command} #{watch}"
+                invoke_command "god #{command} #{watch}", :via => via
               end
             end
           end
